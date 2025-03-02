@@ -1,0 +1,85 @@
+Lab-11-----
+
+1. Find employees whose name start with E.
+db.Employee.find({ ENAME: { $regex: '^E', $options: 'i' } });
+
+2. Find employees whose name ends with n.
+db.Employee.find({ ENAME: { $regex: 'n$', $options: 'i' } });
+
+3. Find employees whose name starts with S or M in your collection.
+db.Employee.find({ ENAME: { $regex: '^[SM]', $options: 'i' } });
+
+4. Find employees where city starts with A to M in your collection.
+db.Employee.find({ CITY: { $regex: '^[A-M]', $options: 'i' } });
+
+5. Find employees where city name ends in ‘ney’.
+db.Employee.find({ CITY: { $regex: 'ney$', $options: 'i' } });
+
+6. Display employee info whose name contains n. (Both uppercase(N) and lowercase(n))
+db.Employee.find({ ENAME: { $regex: 'n', $options: 'i' } });
+
+7. Display employee info whose name starts with E and having 5 characters.
+db.Employee.find({ ENAME: { $regex: '^E.{4}$', $options: 'i' } });
+
+8. Display employee whose name start with S and ends in a.
+db.Employee.find({ ENAME: { $regex: '^S.*a$', $options: 'i' } });
+
+9. Display EID, ENAME, CITY and SALARY whose name starts with ‘Phi’.
+db.Employee.find({ ENAME: { $regex: '^Phi', $options: 'i' } }, { EID: 1, ENAME: 1, CITY: 1, SALARY: 1 });
+
+10. Display ENAME, JOININGDATE and CITY whose city contains ‘dne’ as three letters in city name.
+db.Employee.find({ CITY: { $regex: 'dne', $options: 'i' } }, { ENAME: 1, JOININGDATE: 1, CITY: 1 });
+
+11. Display ENAME, JOININGDATE and CITY who does not belongs to city London or Sydney.
+db.Employee.find({ CITY: { $nin: ['London', 'Sydney'] } }, { ENAME: 1, JOININGDATE: 1, CITY: 1 });
+
+12. Find employees whose names start with 'J'.
+db.Employee.find({ ENAME: { $regex: '^J', $options: 'i' } });
+
+13. Find employees whose names end with 'y'.
+db.Employee.find({ ENAME: { $regex: 'y$', $options: 'i' } }); 
+
+14. Find employees whose names contain the letter 'a'.
+db.Employee.find({ ENAME: { $regex: 'a', $options: 'i' } });
+
+15. Find employees whose names contain either 'a' or 'e'.
+db.Employee.find({ ENAME: { $regex: '[ae]', $options: 'i' } });
+
+16. Find employees whose names start with 'J' and end with 'n'.
+db.Employee.find({ ENAME: { $regex: '^J.*n$', $options: 'i' } });
+
+17. Find employees whose CITY starts with 'New'.
+db.Employee.find({ CITY: { $regex: '^New', $options: 'i' } });
+
+18. Find employees whose CITY does not start with 'L'
+db.Employee.find({ CITY: { $regex: '^[^L]', $options: 'i' } });
+
+19. Find employees whose CITY contains the word 'York'.
+db.Employee.find({ CITY: { $regex: 'York', $options: 'i' } });
+
+20. Find employees whose names have two consecutive vowels (a, e, i, o, u).
+db.Employee.find({ ENAME: { $regex: '[aeiou]{2}', $options: 'i' } });
+
+21. Find employees whose names have three or more letters.
+db.Employee.find({ ENAME: { $regex: '^.{3,}$', $options: 'i' } });
+
+22. Find employees whose names have exactly 4 letters.
+db.Employee.find({ENAME: {$regex: '^.{4}$', $options: 'i'}});
+
+23. Find employees whose names start with either 'S' or 'M'.
+db.Employee.find({ ENAME: { $regex: '^[SM]', $options: 'i' } });
+
+24. Find employees whose names contain 'il' anywhere.
+db.Employee.find({ ENAME: { $regex: 'il', $options: 'i' } });
+
+25. Find employees whose names do not contain 'a'.
+db.Employee.find({ ENAME: { $regex: '[^a]', $options: 'i' } });
+
+26. Find employees whose names contain any digit.
+db.Employee.find({ ENAME: { $regex: '\\d', $options: 'i' } });
+
+27. Find employees whose names contain exactly one vowel.
+db.Employee.find({ ENAME: { $regex: '^[^aeiou][aeiou][^aeiou]$', $options: 'i' } }); 
+
+28. Find employees whose names start with any uppercase letter followed by any lowercase letter
+db.Employee.find({ ENAME: { $regex: '^[A-Z][a-z]', $options: 'i' } });
