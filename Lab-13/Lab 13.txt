@@ -1,0 +1,263 @@
+Part A (Use collection "Stock" created in Lab-12)
+
+1. Create an index on the company field in the stocks collection.
+
+db.Stock.createIndex({company:1})
+
+2. Create a compound index on the sector and sales fields in the stocks collection.
+
+db.Stock.createIndex({sector: 1, sales:1})
+
+3. List all the indexes created on the stocks collection.
+
+db.Stock.getIndex()
+
+4. Drop an existing index on the company field from the stocks collection.
+
+db.Stock.dropIndex({company:1})
+
+5. Use a cursor to retrieve and iterate over documents in the stocks collection, displaying each document.
+
+var cursor stock = db.Stock.find()
+
+cursor stock // to display a document
+
+6. Limit the number of documents returned by a cursor to the first 3 documents in the stocks collection.
+
+var cursor limitdb.Stock.find().limit(3)
+
+cursor limit // to display top 3 data
+
+7. Sort the documents returned by a cursor in descending order based on the sales field.
+
+var cursor sales db.Stock.find().sort((sales :-1))
+
+cursor_sales // to display data in desc order with reference sales field
+
+8. Skip the first 2 documents in the result set and return the next documents using the cursor.
+
+var cursor skip = db.Stock.find().skip(2).limit(1)
+
+cursor skip // to display data firt 2 data is skip and return the next one data
+9. Convert the cursor to an array and return all documents from the stocks collection.
+
+var cursor accdb.Stock.find().toArray()
+
+cursor arr // to display data in array
+
+10. Create a collection named "Companies" with schema validation to ensure that each document must contains a company field (string) and a sector field (string).
+
+db.createCollection("Companies",
+
+validator:{
+
+$jsonSchema: {
+
+bsonType: "object",
+
+required: ["company", "sector"], company: (bsonType: "String"}, sector: (bsonType: "String"}
+
+properties: {
+
+اب باب
+
+Part - B
+
+1. Create a collection named "Scripts" with validation for fields like eps, pe, and roe to ensure that they are numbers and required/compulsory fields. I
+
+db.createCollection("Companies",
+
+{ validator:{
+
+$jsonSchema: {
+
+bsonType: "object", required: ["eps", "pe", "roe"], eps: (bsonType: "Number"},
+
+properties: {
+
+pe: (bsonType: "Number"), roe: (bsonType: "Number")
+}
+}
+}
+})
+
+db.createCollection("Products", {
+
+validator: {
+
+$jsonSchema: {
+
+bsonType: "object",
+
+required: ["productName", "manufacturer", "categories"],
+
+properties: {
+
+productName: {
+
+bsonType: "string",
+
+description: "Product name must be a string"
+
+},
+
+manufacturer: {
+
+bsonType: "object",
+
+required: ["name", "country", "establishedYear"],
+
+properties: {
+
+name: {
+
+bsonType: "string",
+
+description: "Manufacturer name must be a string"
+
+},
+
+country: {
+
+bsonType: "string",
+
+description: "Manufacturer country must be a string"
+
+},
+
+establishedYear: {
+
+bsonType: "int",
+
+description: "Established year must be an integer"
+
+}
+
+}
+
+},
+
+categories: {
+
+bsonType: "array",
+
+items: {
+
+bsonType: "string",
+
+},
+
+description: "Each category must be a string"
+
+description: "Categories must be an array of strings"
+
+}
+
+},
+
+validationAction: "warn" // or "error" to enforce validation strictly });
+
+Part - C
+
+1. Create a collection named "financial Reports" that requires revenue (a positive number) but allows optional fields like expenses and netIncome (if provided, they should also be numbers).
+
+db.createCollection("financial_Reports",
+
+{
+
+validator: {
+
+jsonSchema: { $
+
+bsonType: "object",
+
+required: ["revenue", "expenses", "net Income"],
+
+properties: {
+
+revenue: {bsonType:"double", minimum: 0,},
+
+expenses: {bsonType: "Number"},
+
+netIncome: (bsonType: "Number"}
+
+2. Create a collection named "Student" where each student has name and address are embedded document and mobilenumber and emailaddress are multivalued field that stores an array of values.
+
+db.createCollection("Student", {
+
+validator: {
+
+$jsonSchema: {
+
+bsonType: "object",
+
+required: ["name", "address", "mobilenumber", "emailaddress"],
+
+properties: {
+
+name: {
+
+bsonType: "object", required: ["firstName", "lastName"],
+
+properties: {
+
+firstName: (bsonType: "string",),
+
+lastName: (bsonType: "string",}
+
+}
+
+},
+
+address: (
+
+bsonType: "object", required: ["street", "city", "zipcode"],
+
+properties: (
+
+stract: SheonTunar "string" 1
+
+
+Sunnyaddress: {
+
+bsonType: "object",
+
+required: ["street", "city", "zipcode"],
+
+properties: {
+
+street: (bsonType: "string",),
+
+city: {bsonType: "string",),
+
+zipcode: {bsonType: "string",}
+
+}
+
+},
+
+mobilenumber: {
+
+bsonType: "array",
+
+items: {bsonType: "string",),
+
+},
+
+emailaddress: {
+
+bsonType: "array",
+
+items: {
+
+bsonType: "string", pattern: "^\\S+@\\S+\\.\\S+$", // Basic email validation pattern
+
+},
+
+description: "Each email address must be a valid string"
+
+description: "Email address must be an array of valid strings"
+
+}, validationAction: "warn" // Or use "error" to enforce strict validation
+
+});
